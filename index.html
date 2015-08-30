@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moveme</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script>
+function loadjscssfile(filename, filetype){
+    if (filetype=="js") {
+        var fileref=document.createElement('script')
+        fileref.setAttribute("type","text/javascript")
+        fileref.setAttribute("src", filename)
+    }
+    else if (filetype=="css"){
+        var fileref=document.createElement("link")
+        fileref.setAttribute("rel", "stylesheet")
+        fileref.setAttribute("type", "text/css")
+        fileref.setAttribute("href", filename)
+    }
+    if (typeof fileref!="undefined") {
+        document.getElementsByTagName("head")[0].appendChild(fileref)
+    }
+}
+if (location.hash.length < 2) {
+  loadjscssfile('css/landing.css', 'css')
+} else {
+  loadjscssfile('/bundle.css', 'css')
+}
+
+
+</script>
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="application"></div>
+<div id="landing-wrap">
+  <div id="landing" class="wrapper">
+    <div class="intro" id="intro">
+      <div class="header">
+        <div class="content clearfix">
+          <a href="/landing.html" class="header__logo">
+            <img style="width:262px" src="img/logo-landing.svg" alt="">
+          </a>
+          <div class="header__menu clearfix">
+            <a href="/landing.html" class="header__item">Онлайн-заказ</a>
+            <a href="/partnership.html" class="header__item">Сотрудничество</a>
+            <a href="/help.html" class="header__item">Помощь</a>
+          </div>
+          <div class="header__menu cb clearfix">
+            <ul class="callback">
+              <li>
+                <span class="top-phone">+7 (499) 963 8180</span>
+              </li>
+              <li>
+                <span class="button btn-yellow btn-obr">Заказать звонок</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="clearfix">
+          <div class="col2 intro__left">
+            <h1 class="h1 intro__h1">Самые быстрые перевозки&nbsp;в&nbsp;Москве</h1>
+            <p>
+              MoveMe — это быстрые грузоперевозки, пассажирские перевозки и эвакуация транспорта.
+            </p>
+            <p>
+              Если у вас есть груз, который нужно перевезти - мы найдем вам машину в течение нескольких минут. Если у вас есть автомобиль, мы обеспечим вас заказами на весь рабочий день.
+            </p>
+            <br>
+            <br>
+            <a href="/about.html" class="btn btn__stroked">Узнать больше</a>
+          </div>
+          <div class="col2 intro__right">
+            <form id="form" class="form intro__form">
+              <div class="form__section">
+                <div id="form-0">
+                  <div class="form__h">Начать работу</div>
+                  <div class="form__row">
+                    <div class="form__logo">
+                      <img style="width:150px" src="img/logo-login.svg" alt="">
+                    </div>
+                  </div>
+                  <div class="form__row input-wrap form__row--icon-right">
+                    <div class="form__row__icon-wrap">
+                      <img src="img/icons/phone.svg" alt="">
+                    </div>
+                    <input id="phone" type="text" class="input input--wide" placeholder="Номер телефона">
+                  </div>
+                  <div id="code-field" class="form__row input-wrap form__row--icon-right" style="opacity:.4">
+                    <div class="form__row__icon-wrap">
+                      <img src="img/icons/key.svg" alt="">
+                    </div>
+                    <input maxlength="6" disabled="disabled" id="code" type="text" class="input input--wide" placeholder="Код подтверждения">
+                  </div>
+                  <div class="form__row">
+                    <button disabled type="submit" id="form-0-act" class="btn__b form__btn">Запросить код авторизации </button>
+                  </div>
+                  <div class="form__row">
+                    <div id="warnings" class="form-note" style="padding-bottom:1em; display:none">
+                      Введите телефон
+                    </div>
+                    <div class="form-note">
+                      Если у вас нет еще нет аккаунта, то он
+                      <br> будет создан автоматически.
+                    </div>
+                  </div>
+                </div>
+                <div id="form-1" style="display:none">
+                  <div class="form__h">Регистрация</div>
+                  <div id="account-types" class="form__section">
+                    <div class="account-type clearfix">
+                      <div data-type="0" class="account-type__item account-type__item--active">
+                        <img style="width: 32px" src="img/icons/cart-active.svg" alt="">
+                        <span>Клиент</span>
+                      </div>
+                      <div data-type="1" class="account-type__item">
+                        <img style="width: 32px" src="img/icons/truck.svg" alt="">
+                        <span>Водитель</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form__row input-wrap form__row--icon-right">
+                    <div class="form__row__icon-wrap">
+                      <img src="img/icons/person.svg" alt="">
+                    </div>
+                    <input id="lastname" type="text" class="input input--wide" placeholder="Фамилия">
+                  </div>
+                  <div class="form__row input-wrap form__row--icon-right">
+                    <input id="firstname" type="text" class="input input--wide" placeholder="Имя">
+                  </div>
+                  <div class="form__row input-wrap form__row--icon-right">
+                    <input id="middlename" type="text" class="input input--wide" placeholder="Отчество">
+                  </div>
+                  <div class="form__row input-wrap form__row--icon-right">
+                    <div class="form__row__icon-wrap">
+                      <img src="img/icons/mail.svg" alt="">
+                    </div>
+                    <input id="mail" type="text" class="input input--wide" placeholder="Почта">
+                  </div>
+                  <div class="form__row">
+                    <button type="submit" id="form-1-act" class="btn__b form__btn">Зарегистрироваться</button>
+                  </div>
+                  <div class="form__row">
+                    <div id="warnings2" class="form-note" style="padding-bottom:1em; display:none">
+                      Введите телефон
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- intro -->
+    <section class="section">
+      <div class="content clearfix mp-mobile">
+        <img class="mp-mobile__iphone" src="img/iphone.png" alt="">
+        <div class="mp-mobile__right">
+          <h2 class="h2">Будь мобильнее</h2>
+          <p class="weak">
+            Мобильное приложение для iOS и Android позволит вам сделать или принять заказ независимо от того, где вы находитесь.
+          </p>
+          <p>
+            <span class="mp-mobile__pros">
+              <i class="fa fa-star"></i> Быстрый заказ
+            </span>
+            <span class="mp-mobile__pros">
+              <i class="fa fa-map-marker"></i> Удобная карта
+            </span>
+            <span class="mp-mobile__pros">
+              <i class="fa fa-trophy"></i> +1 преимущество
+            </span>
+          </p>
+          <div class="mp-mobile__badges clearfix">
+            <div class="fl-r">
+              <a target="_blank" href="https://www.apple.com/ru/">
+                <img src="img/app-store.png" alt="">
+              </a>
+              <a target="_blank" href="https://play.google.com/store">
+                <img src="img/google-play.png" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="mp-phone-after"></div>
+    <section class="section section--dark mp-big-font">
+      <div class="content mp-problems">
+        <h2 class="h2 ta-c">Какие задачи мы решаем</h2>
+        <br>
+        <br>
+        <div class="clearfix">
+          <div class="col2">
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-01.png" alt="">
+              <div class="mp-problems__problem__text">
+                Мы экономим ваше время
+                <br> и деньги
+              </div>
+            </div>
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-02.png" alt="">
+              <div class="mp-problems__problem__text">
+                Интуитивно понятный
+                <br> интерфейс
+              </div>
+            </div>
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-03.png" alt="">
+              <div class="mp-problems__problem__text">
+                Прозрачная и простая система
+                <br> тарификации в режиме онлайн
+              </div>
+            </div>
+          </div>
+          <div class="col2" style="padding-left: 30px;">
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-04.png" alt="">
+              <div class="mp-problems__problem__text">
+                Доступ к самым дешевым
+                <br> и надежным перевозчикам
+              </div>
+            </div>
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-05.png" alt="">
+              <div class="mp-problems__problem__text">
+                Отслеживание перевозки
+                <br> в режиме онлайн
+              </div>
+            </div>
+            <div class="mp-problems__problem clearfix">
+              <img class="mp-problems__problem__img" src="img/problem-06.png" alt="">
+              <div class="mp-problems__problem__text">
+                Поиск и заказ перевозки
+                <br> менее чем за 1 минуту
+              </div>
+            </div>
+          </div>
+          <center>
+            <span class="button btn-yellow btn-obr">Задать вопрос нам</span>
+          </center>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="content mp-advs">
+        <h2 class="h2 ta-c">Преимущества</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="clearfix ta-c">
+          <div class="col4">
+            <img src="img/advs-01.png" alt="">
+            <br>
+            <br> Личный
+            <br> кабинет
+          </div>
+          <div class="col4">
+            <img src="img/advs-03.png" alt="">
+            <br>
+            <br> Отсутствие
+            <br> диспетчера
+          </div>
+          <div class="col4">
+            <img src="img/advs-05.png" alt="">
+            <br>
+            <br> Доступ с любого
+            <br> устройства
+          </div>
+          <div class="col4">
+            <img src="img/advs-07.png" alt="">
+            <br>
+            <br> Самая большая
+            <br> база машин
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="clearfix ta-c">
+          <div class="col4">
+            <img src="img/advs-02.png" alt="">
+            <br>
+            <br> Круглосуточный
+            <br> режим работы 24/7
+          </div>
+          <div class="col4">
+            <img src="img/advs-04.png" alt="">
+            <br>
+            <br> Быстрота заказа —
+            <br> менее 1 минуты
+          </div>
+          <div class="col4">
+            <img src="img/advs-06.png" alt="">
+            <br>
+            <br> Экономия
+            <br> денег
+          </div>
+          <div class="col4">
+            <img src="img/advs-08.png" alt="">
+            <br>
+            <br> Простота
+            <br> использования
+          </div>
+        </div>
+        <center>
+          <span class="button btn-yellow btn-yellow btn-obr">Задать вопрос нам</span>
+        </center>
+      </div>
+    </section>
+    <section class="section section--dark mp-big-font">
+      <div class="content ta-c clearfix">
+        <div class="col3">
+          <img src="img/type-01.png" alt="">
+          <br>
+          <br> Грузоперевозки
+        </div>
+        <div class="col3">
+          <img src="img/type-02.png" alt="">
+          <br>
+          <br> Пассажирские
+          <br> перевозки
+        </div>
+        <div class="col3">
+          <img src="img/type-03.png" alt="">
+          <br>
+          <br> Эвакуация
+          <br> автомобилей
+        </div>
+      </div>
+    </section>
+    <section class="section mp-driver">
+      <div class="mp-driver__content">
+        <h2 class="h2">Зарабатывайте с нами</h2>
+        <p>
+          Вы можете прилично зарабатывать, используя свой грузовой автомобиль. Вас ждут тысяча и один клиент.
+        </p>
+        <div class="mp-driver__points">
+          <div class="mp-driver__points__point">
+            <img src="img/driver-adv-01.png" alt=""> Прямые заказы от клиентов
+          </div>
+          <div class="mp-driver__points__point">
+            <img style="left:-5px" src="img/driver-adv-02.png" alt=""> Удобное и простое приложение
+          </div>
+          <div class="mp-driver__points__point">
+            <img src="img/driver-adv-03.png" alt=""> Низкая стоимость подключения
+          </div>
+        </div>
+        <br>
+        <a href="/#login" class="btn btn__w">Подключиться к системе MoveMe</a>
+      </div>
+    </section>
+    <section class="section section--dark" style="padding-bottom:0">
+      <div class="content clearfix">
+        <div class="fl-l" style="width: 504px;">
+          <h2 class="h2">Закажи онлайн</h2>
+          <br>
+          <p class="weak">
+            Вы можете заказать грузоперевозку, найти заказ либо вызвать эвакуатор. Просто заполните форму заявки.
+          </p>
+          <br>
+          <a href="#intro" class="btn btn__y">Онлайн-заказ</a>
+        </div>
+        <img class="fl-r" src="img/truck.png" alt="">
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer__content clearfix">
+        <div class="col4 footer__col footer__col--first">
+          <img style="width: 132px;" src="img/logo-footer.svg" alt="">
+          <br>
+          <br> Все права защищены © 2015 MoveMe™
+        </div>
+        <div class="col4 footer__col">
+          <div class="footer__h">Сайт</div>
+          <div class="footer__item"><i class="footer__item__icon footer__item__icon--dot">•</i> Онлайн-заказ</div>
+          <div class="footer__item"><i class="footer__item__icon footer__item__icon--dot">•</i> Тарифы</div>
+          <div class="footer__item"><i class="footer__item__icon footer__item__icon--dot">•</i> Клиентам</div>
+          <div class="footer__item"><i class="footer__item__icon footer__item__icon--dot">•</i> Водителям</div>
+        </div>
+        <div class="col4 footer__col">
+          <div class="footer__h">Приложение</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-apple"></i> iOS</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-android"></i> Android</div>
+        </div>
+        <div class="col4 footer__col">
+          <div class="footer__h">Социальные сети</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-vk"></i> Вконтакте</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-twitter"></i> Twitter</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-facebook"></i> Facebook</div>
+          <div class="footer__item"><i class="footer__item__icon fa fa-instagram"></i> Instagram</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div id="overlay" class=""></div>
+<div id="callback" class="modal">
+  <div id="cross"><span></span><span></span></div>
+  <h4>Заказать обратный звонок</h4>
+  <form id="cb_form" method="POST" class="cta">
+    <input name="name_cb" class="name" type="text" placeholder="Ваше имя" onfocus="placeholder='';" onblur="placeholder='Ваше имя';">
+    <div class="acc"></div>
+    <input name="mobile_cb" class="mobile" required type="phone">
+    <div class="plus7">+7</div>
+    <button class="button btn-yellow">заказать звонок</button>
+  </form>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+if (location.hash.length < 2) {
+  loadjscssfile('js/landing.js', 'js')
+} else {
+  var parent = document.getElementById('landing-wrap');
+  var child = document.getElementById('landing');
+  parent.removeChild(child);
+
+  loadjscssfile('/bundle.js', 'js')
+}
+function sloseM () {
+  $('#overlay').removeClass('show');
+  $('#callback').removeClass('show');
+};
+
+$('#cross').on('click', function () {
+  sloseM();
+});
+
+$('#overlay').on('click', function () {
+  sloseM();
+});
+
+$('.btn-obr').on('click', function () {
+  $('#overlay').addClass('show');
+  $('#callback').addClass('show');
+});
+</script>
+</body>
+</html>
